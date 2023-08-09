@@ -9,27 +9,38 @@ public class Robo : MonoBehaviour
     [Serializable]
     public struct Speak
     {
-        public string speaksText;
+        public string[] speaksText;
     }
 
     public Speak[] speaks;
+    public int idSituation;
     public TextMeshProUGUI speaksTextUI;
-    public GameObject panelQuestion;
+    public GameObject paciente;
     public GameObject panelSpeakRobo;
+    public GameObject btPassarTxt;
     private int currentSpeaksIndex = 0;
     private bool gameEndedSpeak = false;
+    public static Robo instance;
+    public bool isGameOver;
 
-    private void Start()
+	private void Awake()
+	{
+        instance = this;
+	}
+
+	private void Start()
     {
-        DisplaySpeak();
+        if(!isGameOver)
+            DisplaySpeak();
     }
 
     private void DisplaySpeak()
     {
+        btPassarTxt.SetActive(true);
         if (currentSpeaksIndex < speaks.Length)
         {
             Speak currentSpeak = speaks[currentSpeaksIndex];
-            speaksTextUI.text = currentSpeak.speaksText;
+            speaksTextUI.text = currentSpeak.speaksText[idSituation];
         }
         else
         {
@@ -52,7 +63,7 @@ public class Robo : MonoBehaviour
     private void EndSpeak()
     {
         gameEndedSpeak = true;
-        panelQuestion.SetActive(true);
+        paciente.SetActive(true);
         panelSpeakRobo.SetActive(false);
     }
 }
