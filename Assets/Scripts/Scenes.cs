@@ -1,0 +1,5 @@
+enum Scenes
+{
+    Splash,
+    Gameplay
+}

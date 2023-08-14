@@ -22,15 +22,16 @@ public class Robo : MonoBehaviour
     private bool gameEndedSpeak = false;
     public static Robo instance;
     public bool isGameOver;
+    public PanelManager panelManager;
 
-	private void Awake()
-	{
-        instance = this;
-	}
-
-	private void Start()
+    private void Awake()
     {
-        if(!isGameOver)
+        instance = this;
+    }
+
+    private void Start()
+    {
+        if (!isGameOver)
             DisplaySpeak();
     }
 
@@ -64,6 +65,7 @@ public class Robo : MonoBehaviour
     {
         gameEndedSpeak = true;
         paciente.SetActive(true);
+        panelManager.BackgroundPacientChoose(idSituation);
         panelSpeakRobo.SetActive(false);
     }
 }

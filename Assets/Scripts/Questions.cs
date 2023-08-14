@@ -86,11 +86,11 @@ public class Questions : MonoBehaviour
         StartCoroutine(ReturnMenu());
 
         IEnumerator ReturnMenu()
-		{
+        {
             yield return new WaitForSeconds(2);
             panelGameScene.SetActive(false);
             panelMenu.SetActive(true);
 
-		}
+        }
     }
 }
