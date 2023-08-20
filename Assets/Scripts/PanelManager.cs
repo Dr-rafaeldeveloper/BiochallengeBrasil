@@ -34,12 +34,14 @@ public class PanelManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> listPanelMenu;
     public List<GameObject> listBackground;
+    public AudioManager audioManager;
 
     public void PanelActivated(int idPanel)
 	{
         listPanelMenu[idPanel].SetActive(true);
+        audioManager.PlayAudio(0);
 
-		foreach (var panel in listPanelMenu)
+        foreach (var panel in listPanelMenu)
 		{
             if(listPanelMenu[idPanel] != panel)
 			{
@@ -92,6 +94,7 @@ public class PanelManager : MonoBehaviour
 
     public void ResetGame()
 	{
+        audioManager.PlayAudio(0);
         SceneManager.LoadScene("01_Gameplay");
 	}
 

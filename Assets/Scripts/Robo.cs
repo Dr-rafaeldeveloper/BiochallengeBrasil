@@ -23,6 +23,7 @@ public class Robo : MonoBehaviour
     public static Robo instance;
     public bool isGameOver;
     public PanelManager panelManager;
+    public AudioManager audioManager;
 
     private void Awake()
     {
@@ -56,7 +57,7 @@ public class Robo : MonoBehaviour
             Debug.Log("Speak finish");
             return;
         }
-
+        audioManager.PlayAudio(0);
         currentSpeaksIndex++;
         DisplaySpeak();
     }
