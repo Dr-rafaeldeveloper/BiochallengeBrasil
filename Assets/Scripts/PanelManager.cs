@@ -22,7 +22,8 @@ public class PanelManager : MonoBehaviour
         PanelCredits,
         PanelSituacao,
         PanelResposta,
-        GameScene,
+        PanelHadwareDisconected,
+        GameScene
     }
 
     public enum Situation
@@ -35,6 +36,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private List<GameObject> listPanelMenu;
     public List<GameObject> listBackground;
     public AudioManager audioManager;
+    public bool isHardwareOn;
 
     public void PanelActivated(int idPanel)
 	{
@@ -73,23 +75,28 @@ public class PanelManager : MonoBehaviour
 
     public void ChooseSituation(int idSituation)
 	{
-        PanelActivated((int)PanelMenu.GameScene);
-        Robo.instance.idSituation = idSituation;
-
-		switch (idSituation)
+		if (isHardwareOn)
+            PanelActivated((int)PanelMenu.PanelHadwareDisconected);
+		else
 		{
-            case (int)Situation.Q1:
-                BackgroundActivated((int)Backgrounds.aviao);
-                break;
+            PanelActivated((int)PanelMenu.GameScene);
+            Robo.instance.idSituation = idSituation;
 
-            case (int)Situation.Q2:
-                BackgroundActivated((int)Backgrounds.parque);
-                break;
+            switch (idSituation)
+            {
+                case (int)Situation.Q1:
+                    BackgroundActivated((int)Backgrounds.aviao);
+                    break;
 
-            case (int)Situation.Q3:
-                BackgroundActivated((int)Backgrounds.praia);
-                break;
-        }
+                case (int)Situation.Q2:
+                    BackgroundActivated((int)Backgrounds.parque);
+                    break;
+
+                case (int)Situation.Q3:
+                    BackgroundActivated((int)Backgrounds.praia);
+                    break;
+            }
+        }  
 	}
 
     public void ResetGame()
@@ -114,5 +121,10 @@ public class PanelManager : MonoBehaviour
                 BackgroundActivated((int)Backgrounds.praiap3);
                 break;
         }
+    }
+
+    public void HardwareConectado(bool isConnected)
+    {
+        isHardwareOn = isConnected;
     }
 }

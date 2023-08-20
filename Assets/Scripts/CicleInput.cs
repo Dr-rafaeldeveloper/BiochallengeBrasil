@@ -37,6 +37,8 @@ public class CicleInput : MonoBehaviour, IPointerClickHandler
         pontos = 0;
         panelPontos.SetActive(false);
         transform.localScale = new Vector3(initialSize, initialSize, 1.0f);
+        txtProfundidade.text = "Profundidade: " + profundidade.ToString();
+        txtAcertos.text = "Acertos: " + acertos.ToString();
     }
 
     private void FixedUpdate()
