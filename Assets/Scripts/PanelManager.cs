@@ -127,4 +127,10 @@ public class PanelManager : MonoBehaviour
     {
         isHardwareOn = isConnected;
     }
+
+    public void FecharJogo()
+    {
+        // Fecha o aplicativo (jogo)
+        Application.Quit();
+    }
 }
